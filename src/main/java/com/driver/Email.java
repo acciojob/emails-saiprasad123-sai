@@ -10,7 +10,7 @@ public class Email {
         this.password = "Accio@123";
     }
 
-    public String getEmailId() {
+    public  String getEmailId() {
         return emailId;
     }
 
@@ -20,6 +20,28 @@ public class Email {
 
     public void changePassword(String oldPassword, String newPassword){
         //Change password only if the oldPassword is equal to current password and the new password meets all of the following:
+        boolean isValid = true;
+
+        if(newPassword.length()<8) isValid=false;
+
+        boolean upper=false,lower=false;
+        int count=0;
+
+        for(int i=0;i<newPassword.length();i++){
+            if(Character.isUpperCase(newPassword.charAt(i))){
+                count++;
+                upper=true;
+            }
+            if(Character.isLowerCase(newPassword.charAt(i))) {
+                count++;
+                lower = true;
+            }
+        }
+
+        if(oldPassword.equals(this.password) && lower && count<newPassword.length()){
+            this.password=newPassword;
+        }
+
         // 1. It contains at least 8 characters
         // 2. It contains at least one uppercase letter
         // 3. It contains at least one lowercase letter

@@ -24,7 +24,7 @@ public class Email {
 
         if(newPassword.length()<8) isValid=false;
 
-        boolean upper=false,lower=false;
+        boolean upper=false,lower=false,digit=false;
         int count=0;
 
         for(int i=0;i<newPassword.length();i++){
@@ -36,9 +36,14 @@ public class Email {
                 count++;
                 lower = true;
             }
+            if(Character.isDigit(newPassword.charAt(i))){
+                count++;
+                digit=true;
+            }
         }
 
-        if(oldPassword.equals(this.password) && lower && count<newPassword.length()){
+        isValid = isValid && upper && lower && digit && count<newPassword.length();
+        if(oldPassword.equals(this.password) && isValid){
             this.password=newPassword;
         }
 

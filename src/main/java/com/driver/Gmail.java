@@ -94,7 +94,7 @@ public class Gmail extends Email {
             mail msg = inbox.get(i);
             if(msg.Date.after(start) && msg.Date.before(end))
                 count++;
-            if(msg.Date.after(start)||msg.Date.before(end))
+            if(msg.Date.equals(start)||msg.Date.equals(end))
                 count++;
         }
     return count;
